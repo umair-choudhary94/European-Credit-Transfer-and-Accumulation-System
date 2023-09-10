@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Data</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css"
+    rel="stylesheet"
+    />
+    
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-10 col-12 mx-auto mt-2">
+            <div class="card border shadow-0 p-2">
+
+            
+            <h6>Latest Data</h6>
+<a href="/delete-database">Clear</a>
+<a href="/">Add New</a>
+
+    {% if latest_data %}
+
+        <table class="table bordered">
+            <tr>
+                <th>Date</th>
+                <th>Module Name</th>
+                <th>Module Group</th>
+                <th>Compulsory/Elective</th>
+                <th>Current Semester</th>
+                <th>Acquired ECTS Points</th>
+            </tr>
+            {% for data in latest_data %}
+            <tr>
+                <td>{{ data.date[8:] }}/{{ data.date[5:7] }}/{{ data.date[:4] }}</td>
+                <td>{{ data.module_name }}</td>
+                <td>{{ data.module_group }}</td>
+                <td>{{ data.compulsory_elective }}</td>
+                <td>{{ data.semester }}</td>
+                <td>{{ data.acquired_points }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        
+
+        <h6>Module Group Acquired Points</h6>
+        <table class="table bordered">
+            <tr>
+                <th>Module Group</th>
+                <th>PF Points</th>
+                <th>WPF Points</th>
+                <th>Total Points</th>
+                <th>Status</th>
+            </tr>
+            {% for module_group, points in module_group_acquired_points.items() %}
+            <tr>
+                <td>{{ module_group }}</td>
+                <td>{{ points['pf_acquired_points'] }}</td>
+                <td>{{ points['wpf_acquired_points'] }}</td>
+                <td>{{ points['total_points'] }}</td>
+                <td {% if passing_status.get(module_group) is defined and passing_status.get(module_group).startswith('Pass') %}class="text-success"{% else %}class="text-danger"{% endif %}>
+                    {{ passing_status.get(module_group, 'N/A') }}
+                </td>
+                
+                
+            </tr>
+            {% endfor %}
+        </table>
+        <h6 class="text-danger">Acquired Points</h6>
+        <p><strong>Total Points(WPF + PF):</strong> {{ total_points }}</p>
+        <p><strong>PF Points:</strong> {{ pf_acquired_points }}</p>
+        <p><strong>WPF Points:</strong> {{ wpf_acquired_points }}</p>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</div>
+        </div>
+    </div>
+    
+
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"
+    ></script>
+</body>
+</html>

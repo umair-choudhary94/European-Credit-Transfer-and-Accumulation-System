@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Form</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css"
+    rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6 col-12 mx-auto">
+            <div class="card border shadow-0 mt-5 p-4">
+                <h6>Fill up form please to add data</h6>
+                <form action="/data" method="POST">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" class="form-control" required><br>
+            
+                    <label for="module_name">Module Name:</label>
+                    <input type="text" id="module_name" name="module_name" class="form-control" required><br>
+            
+                    <label for="module_group">Module Group:</label>
+                    <select id="module_group" name="module_group" class="form-control" required>
+                        <option value="BWL">BWL</option>
+                        <option value="SQL">SQL</option>
+                        <option value="SLM">SLM</option>
+                        <option value="SOZ">SOZ</option>
+                        <option value="BT">BT</option>
+                    </select><br>
+            
+                    <label for="compulsory_elective">Compulsory/Elective:</label>
+                    <select id="compulsory_elective" name="compulsory_elective" class="form-control" required>
+                        <option value="WPF">WPF</option>
+                        <option value="PF">PF</option>
+                    </select><br>
+            
+                    <label for="semester">Current Semester:</label>
+                    <select id="semester" name="semester" class="form-control" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select><br>
+            
+                    <label for="acquired_points">Acquired ECTS Points:</label>
+                    <input type="number" id="acquired_points" name="acquired_points" class="form-control" min="0" required><br>
+            
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <a href="/data" class="btn btn-success">View Data</a>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>

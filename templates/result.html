@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    <h1>Module Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Module Name</th>
+                <th>Module Group</th>
+                <th>Compulsory/Elective</th>
+                <th>Semester</th>
+                <th>Acquired Points</th>
+                <th>Remaining Compulsory Points</th>
+                <th>Remaining Major Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for points in data %}
+            <tr>
+                <td>{{ points.date }}</td>
+                <td>{{ points.module_name }}</td>
+                <td>{{ points.module_group }}</td>
+                <td>{{ points.compulsory_elective }}</td>
+                <td>{{ points.semester }}</td>
+                <td>{{ points.acquired_points }}</td>
+                <td>{{ module_groups[points.module_group].compulsory_points - points.acquired_points }}</td>
+                <td>{{ module_groups[points.module_group].major_points - points.acquired_points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h1>Module Groups</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Module Group</th>
+                <th>Compulsory Points</th>
+                <th>Electives Required</th>
+                <th>Major Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group, data in module_groups.items() %}
+            <tr>
+                <td>{{ group }}</td>
+                <td>{{ data.compulsory_points }}</td>
+                <td>{{ data.electives_required }}</td>
+                <td>{{ data.major_points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
